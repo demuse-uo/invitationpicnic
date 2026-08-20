@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Invitation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+
+<!-- ========== COVER ========== -->
+<div id="cover">
+    <img class="bunga-deco d1" src="Elemen/bunga 1.png" alt="" aria-hidden="true">
+    <img class="bunga-deco d2" src="Elemen/bunga2.png" alt="" aria-hidden="true">
+    <img class="bunga-deco d3" src="Elemen/bunga3.png" aria-hidden="true">
+  <div class="cover-inner">
+    <div class="cover-badge" id="coverBadge">Invitation</div>
+    <div class="cover-kicker">Kami mengundang Anda ke</div>
+    <h1 id="coverTitle">de Muse picnic : Colors of our story🎨🖌️</h1>
+    <div class="cover-date" id="coverDate">—</div>
+
+    <div class="guest-card">
+      <small>To Muses :</small>
+      <div id="guestName">Bapak/Ibu/Saudara/i</div>
+    </div>
+
+    <button class="btn btn-primary" id="openBtn">✉️ Open</button>
+  </div>
+</div>
+
+<!-- ========== ISI UNDANGAN ========== -->
+<main id="content">
+
+  <section id="hero">
+    <div class="hero-ring">
+        <span id="heroEmoji">🎉</span>
+        <img id="heroFoto" alt="" hidden>
+    </div>
+    <div class="eyebrow" id="heroEyebrow">Save the Date</div>
+    <h1 id="heroTitle">Judul Acara</h1>
+    <p id="heroTagline">Deskripsi singkat acara.</p>
+    <div class="hero-pills" id="heroPills"></div>
+  </section>
+
+  <section class="reveal">
+    <div id="countdownWrap">
+      <div class="label">Menuju Hari-H</div>
+      <div class="cd-grid" id="cdGrid">
+        <div class="cd-box"><div class="cd-num" id="cdD">00</div><div class="cd-lbl">Hari</div></div>
+        <div class="cd-box"><div class="cd-num" id="cdH">00</div><div class="cd-lbl">Jam</div></div>
+        <div class="cd-box"><div class="cd-num" id="cdM">00</div><div class="cd-lbl">Menit</div></div>
+        <div class="cd-box"><div class="cd-num" id="cdS">00</div><div class="cd-lbl">Detik</div></div>
+      </div>
+      <div id="cdDone">🎊 Acara sedang berlangsung!</div>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <div class="center">
+      <div class="eyebrow">Detail</div>
+      <h2 class="section-title">Waktu &amp; Tempat</h2>
+    </div>
+    <div class="card">
+      <div class="detail-grid">
+        <div class="detail-item">
+          <div class="detail-icon i-kuning">📅</div>
+          <div><h3>Tanggal</h3><p id="dTanggal">—</p></div>
+        </div>
+        <div class="detail-item">
+          <div class="detail-icon i-koral">⏰</div>
+          <div><h3>Waktu</h3><p id="dWaktu">—</p></div>
+        </div>
+        <div class="detail-item">
+          <div class="detail-icon i-tosca">📍</div>
+          <div><h3 id="dTempat">—</h3><p id="dAlamat">—</p></div>
+        </div>
+      </div>
+      <div style="margin-top:20px;text-align:center">
+        <a class="btn btn-tosca" id="mapsBtn" target="_blank" rel="noopener">🗺️ Lihat Lokasi di Peta</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="reveal" id="rundownSection">
+    <div class="center">
+      <div class="eyebrow">Susunan Acara</div>
+      <h2 class="section-title">Rundown</h2>
+    </div>
+    <div class="card"><div class="timeline" id="timeline"></div></div>
+  </section>
+
+  <section class="reveal center">
+    <div class="eyebrow">Jangan Sampai Lupa</div>
+    <h2 class="section-title">Simpan Tanggalnya 🗓️</h2>
+    <p class="muted">Tambahkan ke kalender kamu supaya dapat pengingat otomatis.</p>
+    <div class="std-buttons">
+      <a class="btn btn-primary" id="gcalBtn" target="_blank" rel="noopener">Google Calendar</a>
+      <button class="btn btn-ghost" id="icsBtn">Apple / Outlook (.ics)</button>
+    </div>
+  </section>
+
+  <section class="reveal" id="notesSection">
+    <div class="center">
+      <div class="eyebrow">Info Tambahan</div>
+      <h2 class="section-title">Yang Perlu Diketahui</h2>
+    </div>
+    <div class="note-list" id="noteList"></div>
+  </section>
+
+</main>
+
+<footer class="reveal">
+  <div class="thanks" id="footerThanks">See You Warga 👋</div>
+  <p class="muted" style="font-size:.9rem" id="footerHost">Hormat kami, Panitia</p>
+  <small id="footerContact"></small>
+</footer>
+
+<audio id="bgm" loop></audio>
+<button id="musicBtn" aria-label="Putar/hentikan musik">🎵</button>
+
+<script src="script.js"></script>
+</body>
+</html>
