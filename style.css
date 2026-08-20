@@ -65,9 +65,11 @@ h1{
   line-height:1.2;
   margin:0;
   color:var(--pastel-red);
-  -webkit-text-stroke:2px #846b7e70;
+  -webkit-text-stroke:2px #846B7E;
+  paint-order:stroke fill;
   text-shadow:.055em .055em 0 var(--grey-red);
 }
+
 h2,h3,.font-display{
   font-family:'Baloo 2', system-ui, cursive;
   line-height:1.2;

@@ -6,7 +6,7 @@ const CONFIG = {
     folderFoto: "foto/",
   // --- Identitas acara ---
   namaAcara:   "de Muse picnic : Colors of our story🎨🖌️",
-  tagline:     "Haii, Muses.. Tidak terasa waktu berlalu begitu cepat. Sebentar lagi piknik akan segera terlaksana",
+  tagline:     "Hii, Muses.. Time really does fly. Our picnic day is almost here!",
   emoji:       "🎉",                 // emoji besar di lingkaran hero
   badge:       "Invitation",   // teks kecil di cover
   eyebrow:     "Save the Date",
@@ -24,30 +24,30 @@ const CONFIG = {
 
   // --- Rundown (boleh tambah/kurangi) ---
   rundown: [
-    {judul:"Pembukaan Acara", desc:"MC" },
-    {judul:"Foto bersama",                 desc:"Seluruh warga de Muse" },
-    {judul:"Perkenalan diri",      desc:"Dibuka oleh Tarry & Anis, peserta selanjutnya berdasarkan sistem kocok" },
-    {judul:"Perkenalan diri + game",               desc:"10 peserta pertama diselingi game spidol (penentuan kelompok berdasarkan sistem kocok)" },
-    {judul:"Perkenalan",    desc:"Lanjut sesi perkenalan sisa peserta sampai selesai" },
-    {judul:"Game Final", desc:"Pemanggil Hewan (Ketua tim mata ditutup)"},
-    {judul:"Pemilihan Peserta Favorit", desc:"sistem voting"},
-    {judul:"Pengumunan pemenang lomba & peserta favorit", desc:"MC"},
-    {judul:"Makan siang bersama", desc:"warga de Muse"}
+    {judul:"Opening", desc:"MC" },
+    {judul:"Group Photo",                 desc:"All de Muse members" },
+    {judul:"Introductions & Shirt Philosophy",      desc:"Kicked off by Tarry & Anis, next participants picked randomly" },
+    {judul:"Intro + Game",     desc:"First 10 participants play the Paper Ball Race Game (groups drawn randomly)" },
+    {judul:"Continue: Speeches & Philosophy",    desc:"Remaining participants share their story and shirt color philosophy" },
+    {judul:"Final Game", desc:"Call of the Animals (team leader blindfolded)"},
+    {judul:"Fan Favorite Voting", desc:"Live audience vote"},
+    {judul:"Winners & Fan Favorite Announcement", desc:"MC"},
+    {judul:"Lunch Together", desc:"All de Muse members"}
   ],
 
   // --- Info tambahan (boleh tambah/kurangi) ---
   catatan: [
     { icon:"👕", teks:"Dress code: Jeans + your favourite T-Shirt colour" },
     { icon:"🚆", teks:"Dhoby Ghaut MRT Exit B" },
-    { icon:"🎁", teks:"Hadiah Kelompok: $50 SGD, Peserta Favorit : $25 SGD (1 orang)" }
+    { icon:"🎁", teks:"Team Prize: $50 SGD, Fan Favorite : $25 SGD (1 orang)" }
   ],
 
   // --- Penutup ---
-  ucapanPenutup: "See You 👋",
-  penyelenggara: "Hormat kami, de Muse Executive",
+  ucapanPenutup: "Until Then, Muses 6 ",
+  penyelenggara: "With Love, de Muse Executive",
 
   // --- Opsional ---
-  musikUrl: ""   // isi URL file .mp3 kalau mau ada musik latar; kosongkan kalau tidak
+  musikUrl: "Elemen/musikringan.mp3"  
 };
 /* ===================== AKHIR CONFIG ===================== */
 
@@ -66,17 +66,17 @@ function offsetMs(z){
   return sign * ((+m[2]) * 3600 + (+m[3]) * 60) * 1000;
 }
 
-const fmtTanggal = new Intl.DateTimeFormat('id-ID',
+const fmtTanggal = new Intl.DateTimeFormat('en-GB',
   { weekday:'long', day:'numeric', month:'long', year:'numeric', timeZone:'UTC' }
 ).format(new Date(dtMulai.getTime() + offsetMs(CONFIG.zona)));
 
 function jamLokal(iso){ return iso.slice(11,16).replace(':','.'); }
 const rentangWaktu = adaSelesai
   ? `${jamLokal(CONFIG.mulai)} – ${jamLokal(CONFIG.selesai)} ${CONFIG.labelZona}`
-  : `${jamLokal(CONFIG.mulai)} ${CONFIG.labelZona} – selesai`;
+  : `${jamLokal(CONFIG.mulai)} ${CONFIG.labelZona} – till we're done`;
 
 /* ---------- Isi konten dari CONFIG ---------- */
-document.title               = "Undangan · " + CONFIG.namaAcara;
+document.title               = "Invitation · " + CONFIG.namaAcara;
 $('#coverBadge').textContent = CONFIG.badge;
 $('#coverTitle').textContent = CONFIG.namaAcara;
 $('#coverDate').textContent  = fmtTanggal;
@@ -91,7 +91,7 @@ $('#dAlamat').textContent    = CONFIG.alamat;
 $('#mapsBtn').href           = CONFIG.mapsUrl;
 $('#footerThanks').textContent = CONFIG.ucapanPenutup;
 $('#footerHost').textContent   = CONFIG.penyelenggara;
-$('#footerContact').textContent= CONFIG.kontak;
+$('#footerContact').textContent= CONFIG.kontak || '';
 
 $('#heroPills').innerHTML = [
   `📅 ${fmtTanggal}`, `⏰ ${rentangWaktu}`, `📍 ${CONFIG.tempat}`
@@ -151,7 +151,7 @@ const timer = setInterval(tick,1000);
 
 /* ---------- Save the Date ---------- */
 const toUTC = dt => dt.toISOString().replace(/[-:]/g,'').split('.')[0] + 'Z';
-const detailAcara = `${CONFIG.tagline}\n\nLokasi: ${CONFIG.tempat}, ${CONFIG.alamat}`;
+const detailAcara = `${CONFIG.tagline}\n\nLocation: ${CONFIG.tempat}, ${CONFIG.alamat}`;
 
 $('#gcalBtn').href = 'https://calendar.google.com/calendar/render?action=TEMPLATE'
   + '&text='     + encodeURIComponent(CONFIG.namaAcara)
@@ -171,7 +171,7 @@ $('#icsBtn').addEventListener('click', () => {
     'SUMMARY:'  + esc(CONFIG.namaAcara),
     'DESCRIPTION:' + esc(detailAcara),
     'LOCATION:' + esc(`${CONFIG.tempat}, ${CONFIG.alamat}`),
-    'BEGIN:VALARM','TRIGGER:-P1D','ACTION:DISPLAY','DESCRIPTION:Pengingat acara','END:VALARM',
+    'BEGIN:VALARM','TRIGGER:-P1D','ACTION:DISPLAY','DESCRIPTION:Event reminder','END:VALARM',
     'END:VEVENT','END:VCALENDAR'
   ].join('\r\n');
   const url = URL.createObjectURL(new Blob([ics], {type:'text/calendar;charset=utf-8'}));
